@@ -3,33 +3,7 @@
                 <!-- Topbar -->
                 <div class="container-fluid u-header__hide-content u-header__topbar u-header__topbar-lg border-bottom border-color-white">
                     <div class="d-flex align-items-center">
-                        <!-- <ul class="list-inline u-header__topbar-nav-divider mb-0">
-                            <li class="list-inline-item mr-0"><a href="tel:(000)999-898-999" class="u-header__navbar-link">(000) 999 - 898 -999</a></li>
-                            <li class="list-inline-item mr-0"><a href="mailto:info@mytravel.com" class="u-header__navbar-link">info@mytravel.com</a></li>
-                        </ul> -->
                         <div class="ml-auto d-flex align-items-center">
-                            <!-- <ul class="list-inline mb-0 mr-2 pr-1">
-                                <li class="list-inline-item">
-                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.facebook.com/" target="_blank">
-                                        <span class="fab fa-facebook-f btn-icon__inner"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://twitter.com/" target="_blank">
-                                        <span class="fab fa-twitter btn-icon__inner"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.instagram.com/" target="_blank">
-                                        <span class="fab fa-instagram btn-icon__inner"></span>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-sm btn-icon btn-pill btn-soft-white btn-bg-transparent transition-3d-hover" href="https://www.linkedin.com/" target="_blank">
-                                        <span class="fab fa-linkedin-in btn-icon__inner"></span>
-                                    </a>
-                                </li>
-                            </ul> -->
                             <?php
                             if (isset($_SESSION['id'])) {
                                 ?>
@@ -88,56 +62,12 @@
                                                     </div>
                                                     <!-- End Form Group -->
                                                     <div class="mb-3 pb-1">
-                                                        <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Login</button>
+                                                        <button type="submit" id="login" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Login</button>
                                                     </div>
-                                                    </form>
-                                                    <!-- <div class="d-flex justify-content-between mb-1">
-                                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                                            <input type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customCheckboxInline1">Remember me</label>
-                                                        </div>
-                                                        <a class="js-animation-link text-primary font-size-14" href="javascript:;" data-target="#forgotPassword" data-link-group="idForm" data-animation-in="fadeIn"><u>Forgot Password?</u></a>
-                                                    </div> -->
                                                     <div id="result1"></div>
                                                 </div>
                                             </div>
                                             <!-- End Login -->
-
-                                            <!-- Forgot Passwrd -->
-                                            <div id="forgotPassword" style="opacity: 0; display: none;" data-target-group="idForm">
-                                                <!-- Header -->
-                                                <div class="card-header bg-light text-center py-3 px-5">
-                                                    <h3 class="h6 mb-0 font-weight-semi-bold">Recover password</h3>
-                                                </div>
-                                                <!-- End Header -->
-                                                <div class="card-body px-10 py-5">
-                                                    <!-- Form Group -->
-                                                    <form class="">
-                                                    <div class="form-group">
-                                                        <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
-                                                            <label class="sr-only" for="recoverSrEmail">Your email</label>
-                                                            <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="email" class="form-control" name="email"  placeholder="Your email" aria-label="Your email" aria-describedby="recoverEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">
-                                                                        <span class="far fa-envelope font-size-20"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Form Group -->
-                                                    <div class="mb-2">
-                                                        <button type="submit" class="btn btn-sm btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Recover Password</button>
-                                                    </div>
-                                                    <div class="text-center font-size-14">
-                                                        <span class="text-gray-1">Remember your password?</span>
-                                                        <a class="js-animation-link font-weight-bold" href="javascript:;" data-target="#login" data-link-group="idForm" data-animation-in="fadeIn">Log In</a>
-                                                    </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <!-- End Forgot Passwrd -->
                                         </form>
                                     </div>
                                 </div>
@@ -222,12 +152,6 @@
                                                         </div>
                                                     </div>
                                                     <!-- End Form Group -->
-                                                    <div class="d-flex justify-content-between mb-1">
-                                                        <div class="custom-control custom-checkbox custom-control-inline">
-                                                            <input type="checkbox"  name="customCheckboxInline2" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customCheckboxInline2">I have read and accept the <a href="#">Terms and Privacy Policy</a></label>
-                                                        </div>
-                                                    </div>
                                                     <div class="">
                                                         <button type="submit" class="btn btn-md btn-block btn-blue-1 rounded-xs font-weight-bold transition-3d-hover">Register</button>
                                                     </div>
@@ -312,42 +236,44 @@
     $(function () {
         $('.sign_up').on('submit', function (e) {
             e.preventDefault();
-            $.ajax({
-                type: 'post',
-                url: 'backend/sign_up.php',
-                data: $('.sign_up').serialize(),
-                success: function (html) {
+            if ($(".sign_up input[name='email']").val().length != 0 && $(".sign_up input[name='name']").val().length != 0 && $(".sign_up input[name='password']").val().length != 0 && $(".sign_up input[name='password_confirmation']").val().length != 0) {
+                $.ajax({
+                    type: 'post',
+                    url:'backend/sign_up.php',
+                    data: $('.sign_up').serialize(),
+                    success: function (html) {
                         var msg=$.trim(html);
                         if(msg=="Success")
                         {
-                            alert("Sign Up Successfully.Check your mail for activate your account")
+                            $('#result').removeClass('text-danger');
+                            alert("Sign Up Successfully")
                             window.location.reload();
                         }
                         else{
-                    $('#result').html(html);
-                }
-                }
-            });
+                            $('#result').addClass('text-danger').html(html);
+                        }
+                    }
+                });
+            }
         });
-    $('.login').on('submit', function (e) {
-            e.preventDefault();
-            $.ajax({
-                type: 'post',
-                url: 'backend/login.php',
-                data: $('.login').serialize(),
-                success: function (a) {
-                var msg2=$.trim(a);
-                    if(msg2=="not_ok"){
-                    $('#result1').html("Email and Password not match");
+        $('#login').on('click', function () {
+            if ($(".login input[name='email']").val().length != 0 && $(".login input[name='password']").val().length != 0) {
+                $.ajax({
+                    type:'post',
+                    url: 'backend/login.php',
+                    data: $('.login').serialize(),
+                    success: function (a) {
+                    var msg2=$.trim(a);
+                        if(msg2=="not_ok"){
+                            $('#result1').addClass('text-danger').html("Email and Password not match");
+                        }
+                        else{
+                            $('#result1').removeClass('text-danger')
+                            window.location.reload();
+                        }
                     }
-                    else if(msg2=="mail_not"){
-                    $('#result1').html("Please confirm your email");
-                    }
-                    else{
-                    window.location.reload();
-                    }
-                }
-            });
+                });
+            }
         });
     });
 </script>

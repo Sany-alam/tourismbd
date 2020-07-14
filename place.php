@@ -5,7 +5,7 @@ include("includes/header.php");
 error_reporting(E_ALL ^ E_WARNING); 
 $place_id=$_REQUEST['id'];
 
-$sql="Select * from place_jayed where id=$place_id";
+$sql="Select * from place where id=$place_id";
 $res=mysqli_query($conn,$sql);
 $row=mysqli_fetch_array($res);
 
@@ -61,11 +61,11 @@ $three=($three/$num_of_review)*100;
 $two=($two/$num_of_review)*100;
 $one=($one/$num_of_review)*100;
 
-$sql_hospital="Select * from hospital_jayed where place_name='$place_name'";
+$sql_hospital="Select * from hospital where place_name='$place_name'";
 $res_hospital=mysqli_query($conn,$sql_hospital);
 
 
-$sql_police="Select * from police_station_jayed where place_name='$place_name'";
+$sql_police="Select * from police_station where place_name='$place_name'";
 $res_police=mysqli_query($conn,$sql_police);
 
 
@@ -253,7 +253,7 @@ if(isset($_POST['review_submit']))
                                 $res3=mysqli_query($conn,$sql3);
                                 while($row3=mysqli_fetch_assoc($res3))
                                 {   $id=$row3['user_id'];
-                                    $sql4="SELECT * FROM user_jayed where id='$id'";
+                                    $sql4="SELECT * FROM user where id='$id'";
                                     $res4=mysqli_query($conn,$sql4);
                                     $row4=mysqli_fetch_assoc($res4);
                                     ?>
@@ -282,7 +282,7 @@ if(isset($_POST['review_submit']))
                         <div class="tab-pane fade" id="pills-four-example-t4" role="tabpanel" aria-labelledby="pills-four-example-t4-tab">
                             <div class="row">
                             <?php
-                            $sql_restaurent="Select * from res_jayed where place_name='$place_name'";
+                            $sql_restaurent="Select * from res where place_name='$place_name'";
                             $res_restaurent=mysqli_query($conn,$sql_restaurent);
 								while($row_restaurent=mysqli_fetch_array($res_restaurent)){
 									$res_id=$row_restaurent['id'];
@@ -335,7 +335,7 @@ if(isset($_POST['review_submit']))
                         <div class="tab-pane fade" id="pills-five-example-t5" role="tabpanel" aria-labelledby="pills-five-example-t5-tab">
                             <div class="row">
                             <?php
-                            $sql_hotel="Select * from hotel_jayed where place_name='$place_name'";
+                            $sql_hotel="Select * from hotel where place_name='$place_name'";
                             $res_hotel=mysqli_query($conn,$sql_hotel);
                             while($row_hotel=mysqli_fetch_array($res_hotel)){
                                 $hotel_id=$row_hotel['id'];
@@ -388,7 +388,7 @@ if(isset($_POST['review_submit']))
                         <div class="tab-pane fade" id="pills-six-example-t6" role="tabpanel" aria-labelledby="pills-six-example-t6-tab">
                             <div class="row">
                             <?php
-                            $sql="Select * from hospital_jayed where place_name='$place_name'";
+                            $sql="Select * from hospital where place_name='$place_name'";
                             $res=mysqli_query($conn,$sql);
                             while($row=mysqli_fetch_array($res)){
                                 $hotel_id=$row['id'];
@@ -420,7 +420,7 @@ if(isset($_POST['review_submit']))
                         <div class="tab-pane fade" id="pills-seven-example-t7" role="tabpanel" aria-labelledby="pills-seven-example-t7-tab">
                             <div class="row">
                             <?php
-                            $sql_police="Select * from police_station_jayed where place_name='$place_name'";
+                            $sql_police="Select * from police_station where place_name='$place_name'";
                             $res_police=mysqli_query($conn,$sql_police);
                             while($row=mysqli_fetch_array($res_police)){
                                 ?>
@@ -449,7 +449,7 @@ if(isset($_POST['review_submit']))
                         <div class="tab-pane fade" id="pills-eight-example-t8" role="tabpanel" aria-labelledby="pills-eight-example-t8-tab">
                             <div class="row">
                             <?php
-                            $sql="Select * from place_jayed where id=$place_id";
+                            $sql="Select * from place where id=$place_id";
                             $res=mysqli_query($conn,$sql);
                             $row=mysqli_fetch_array($res);
                             $place_name=$row['place_name'];

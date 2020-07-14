@@ -5,18 +5,18 @@ $district=$_POST['district'];
 $view=$_POST['view'];
  if($district=='Any' and $view!="Any")
 {
-	$sql="Select * from place_jayed where place_category='$view'";
+	$sql="Select * from place where place_category='$view'";
 }
 else if($view=="Any" and $district!="Any")
 {
-	$sql="Select * from place_jayed where district='$district'";
+	$sql="Select * from place where district='$district'";
 }
 else if($district=="Any" and $view=="Any")
 {
-	$sql="Select * from place_jayed";
+	$sql="Select * from place";
 }
 else{
-	$sql="Select * from place_jayed where place_category='$view' and district='$district' ";
+	$sql="Select * from place where place_category='$view' and district='$district' ";
 }
 
 $res=mysqli_query($conn,$sql);
