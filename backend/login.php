@@ -1,8 +1,9 @@
 <?php 
+include("../connection.php");
 @ob_start();
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 ini_set('error_log', 'ussd-app-error.log');
-include("../connection.php");
+
 
 if(isset($_POST['email'])){
 	$email=$_POST['email'];

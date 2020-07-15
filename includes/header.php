@@ -79,7 +79,7 @@
                                 </a>
                                 <div id="signUpDropdown" class="dropdown-menu dropdown-unfold dropdown-menu-right py-0 mt-0" aria-labelledby="signUpDropdownInvoker" style="min-width: 500px;">
                                     <div class="card rounded-xs">
-                                    <form class="js-validate sign_up" novalidate="novalidate" method="post">
+                                    <form id="sign_up" class="js-validate" novalidate="novalidate">
                                             <!-- Signup -->
                                             <div id="signup" style="opacity: 1;" data-target-group="idForm">
                                                 <!-- Header -->
@@ -94,7 +94,7 @@
                                                         <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
                                                             <label class="sr-only" for="name">Full Name</label>
                                                             <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="text" class="form-control" name="name"  placeholder="Full Name" aria-label="Full Name" aria-describedby="normalname" required="" data-msg="Please enter a valid name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <input type="text" class="form-control" name="s_name"  placeholder="Full Name" aria-label="Full Name" aria-describedby="normalname" required="" data-msg="Please enter a valid name." data-error-class="u-has-error" data-success-class="u-has-success">
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text" >
                                                                         <span class="flaticon-browser-1 font-size-20"></span>
@@ -110,7 +110,7 @@
                                                         <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
                                                             <label class="sr-only" >Email</label>
                                                             <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="email" class="form-control" name="email" placeholder="Email" aria-label="Email" aria-describedby="signupEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <input type="email" class="form-control" name="s_email" placeholder="Email" aria-label="Email" aria-describedby="signupEmail" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text" >
                                                                         <span class="far fa-envelope font-size-20"></span>
@@ -126,7 +126,7 @@
                                                         <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
                                                             <label class="sr-only" >Confirm Password</label>
                                                             <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="password" class="form-control" name="password" placeholder="Password" aria-label="Password" aria-describedby="signupPassword" required="true" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <input type="password" class="form-control" name="s_password" placeholder="Password" aria-label="Password" aria-describedby="signupPassword" required="true" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" >
                                                                         <span class="flaticon-password font-size-10"></span>
@@ -142,7 +142,7 @@
                                                         <div class="js-form-message js-focus-state border border-width-2 border-color-8 rounded-sm">
                                                             <label class="sr-only" for="r_password">Confirm Password</label>
                                                             <div class="input-group input-group-tranparent input-group-borderless input-group-radiusless">
-                                                                <input type="password" class="form-control" name="password_confirmation"  placeholder="Confirm Password" aria-label="Password" aria-describedby="signupPassword" required="true" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                                <input type="password" class="form-control" name="s_password_confirmation"  placeholder="Confirm Password" aria-label="Password" aria-describedby="signupPassword" required="true" data-msg="Your password is invalid. Please try again." data-error-class="u-has-error" data-success-class="u-has-success">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text" >
                                                                         <span class="flaticon-password font-size-10"></span>
@@ -234,13 +234,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     $(function () {
-        $('.sign_up').on('submit', function (e) {
+        $('#sign_up').on('submit', function (e) {
             e.preventDefault();
-            if ($(".sign_up input[name='email']").val().length != 0 && $(".sign_up input[name='name']").val().length != 0 && $(".sign_up input[name='password']").val().length != 0 && $(".sign_up input[name='password_confirmation']").val().length != 0) {
+            if ($("input[name='s_email']").val().length != 0 && $("input[name='s_name']").val().length != 0 && $("input[name='s_password']").val().length != 0 && $("input[name='s_password_confirmation']").val().length != 0) {
                 $.ajax({
-                    type: 'post',
+                    type:'post',
                     url:'backend/sign_up.php',
-                    data: $('.sign_up').serialize(),
+                    data: $('#sign_up').serialize(),
                     success: function (html) {
                         var msg=$.trim(html);
                         if(msg=="Success")
@@ -254,7 +254,10 @@
                         }
                     }
                 });
+            }else{
+                $('#result').addClass('text-danger').html("Fill up full form");
             }
+            
         });
         $('#login').on('click', function () {
             if ($(".login input[name='email']").val().length != 0 && $(".login input[name='password']").val().length != 0) {

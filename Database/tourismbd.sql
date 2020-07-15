@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 14, 2020 at 12:22 PM
--- Server version: 5.7.30-cll-lve
--- PHP Version: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Jul 15, 2020 at 05:23 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `zubreinc_tms`
+-- Database: `tourismbd`
 --
 
 -- --------------------------------------------------------
@@ -725,7 +724,10 @@ INSERT INTO `place_review` (`review_id`, `place_id`, `user_id`, `review`, `ratin
 (21, 13, 8, 'Nice place.', 4, 'image/Hanging_bridge,_meghla,_Bandarban.jpg'),
 (22, 1, 5, 'Nice place. ', 4, 'image/IMG_20180622_165125.jpg'),
 (23, 1, 5, 'Refreshing place. ', 5, 'image/IMG_20190117_133749_557.jpg'),
-(28, 1, 10, 'Nice place', 4, '');
+(28, 1, 10, 'Nice place', 4, ''),
+(29, 2, 4, 'Best place', 5, ''),
+(30, 1, 11, 'Awesome place', 4, ''),
+(31, 3, 12, 'Awesome place', 4, '');
 
 -- --------------------------------------------------------
 
@@ -1314,7 +1316,7 @@ CREATE TABLE `user` (
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
   `user_mobile` text NOT NULL,
-  `mail_confirm` tinyint(1) NOT NULL DEFAULT '1'
+  `mail_confirm` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1327,7 +1329,8 @@ INSERT INTO `user` (`id`, `user_name`, `user_email`, `user_password`, `user_mobi
 (5, 'Md. Jayed Hassan', 'jayedhassan755@gmail.com', '12345', '', 1),
 (8, 'saifu', 'saifucse@gmail.com', '12345', '', 1),
 (7, 'Arfizur Rahman', 'arfiz@gmail.com', '12345', '', 0),
-(10, 'Afsana jahan', 'afsanajahan@gmail.com', '1234', '01630207759', 1);
+(10, 'Afsana jahan', 'afsanajahan@gmail.com', '1234', '01630207759', 1),
+(12, 'Sany', 'mazharulalam26@gmail.com', 'asd', '', 1);
 
 --
 -- Indexes for dumped tables
@@ -1491,7 +1494,7 @@ ALTER TABLE `place_gallery`
 -- AUTO_INCREMENT for table `place_review`
 --
 ALTER TABLE `place_review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `police_station`
@@ -1527,7 +1530,7 @@ ALTER TABLE `transport_cost`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
