@@ -15,7 +15,7 @@
             
               
               
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="index.php">
                 <i class="fas fa-power-off text-primary"></i>
                 Logout
               </a>
