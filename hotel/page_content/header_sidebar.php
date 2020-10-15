@@ -15,10 +15,10 @@
             
               
               
-              <!--<a class="dropdown-item">-->
-              <!--  <i class="fas fa-power-off text-primary"></i>-->
-              <!--  Logout-->
-              <!--</a>-->
+              <a class="dropdown-item" href="logout.php">
+               <i class="fas fa-power-off text-primary"></i>
+               Logout
+              </a>
             
           </li>
          
@@ -37,35 +37,23 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item nav-profile">
-            <div class="nav-link">
-              <div class="profile-image">
-              
-              </div>
-              <div class="profile-name">
-                <p class="name">
-                
-                </p>
-              
-              </div>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link"  href="main.php" >
+              <i class="fas fa-table menu-icon"></i>
+              <span class="menu-title">Home</span>
+            </a>
           </li>
-         
-         
-         
-          
-          
-         
-         
-         
-          
-          
-        
-         
-         
-          
-         
-         
-         
+          <li class="nav-item">
+            <a class="nav-link"  href="add_room.php" >
+              <i class="fas fa-table menu-icon"></i>
+              <span class="menu-title">Add Room</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  href="add_package.php" >
+              <i class="fas fa-table menu-icon"></i>
+              <span class="menu-title">Add Package</span>
+            </a>
+          </li>
         </ul>
       </nav>

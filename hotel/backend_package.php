@@ -1,22 +1,25 @@
 <?php
-ini_set('error_log', 'ussd-app-error.log');
+// @ob_start();
+// ini_set('error_log', 'ussd-app-error.log');
 include("../connection.php");
-extract($_POST);
+// if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+$hotel_name = $_SESSION['hotel_name'];
+$place_name = $_SESSION['place_name'];
+// extract($_POST);
 
 if(isset($_POST['readrecords'])){
 
 	$data =  '<table class="table table-bordered table-striped ">
 						<tr class="bg-dark text-white">
 							<th>No.</th>
-							<th>Place Name</th>
-							<th>Police Station Name</th>
-							
-							<th>Address</th> 
-							<th>Contact</th>
+							<th>Package Name</th>
+							<th>Package Description</th>
+						    <th>Image</th>
+							<th>Price</th> 
 							<th>Delete Action</th>
 						</tr>'; 
 
-	$displayquery = " SELECT * FROM police_station_jayed"; 
+	$displayquery = " SELECT * FROM hotel_package where hotel_name = '$hotel_name'"; 
 	$result = mysqli_query($conn,$displayquery);
 
 	if(mysqli_num_rows($result) > 0){
@@ -24,21 +27,14 @@ if(isset($_POST['readrecords'])){
 		$number = 1;
 		while ($row = mysqli_fetch_array($result)) {
 
-			
+			$image = "../".$row['package_image'];
 			
 			$data .= '<tr>  
 				<td>'.$number.'</td>
-				<td>'.$row['place_name'].'</td>
-				<td>'.$row['police_station_name'].'</td>
-				
-
-			
-
-				
-				
-				<td> '.$row['address'].' </td>
-				<td> '.$row['contact_no'].' </td>
-				
+				<td>'.$row['package_name'].'</td>
+				<td>'.$row['package_description'].'</td>
+				<td><img src ='.$image.'></td>
+				<td>'.$row['package_price'].'</td>
 				<td>
 					<button onclick="DeleteUser('.$row['id'].')" class="btn btn-danger">Delete</button>
 				</td>
@@ -52,38 +48,28 @@ if(isset($_POST['readrecords'])){
 
 }
 
-//adding records in database
-// if(isset($_POST['district']) &&  isset($_POST['view']) && isset($_POST['travel_path']) && isset($_POST['place_name']) && isset($_POST['place_description']) )
-
-if(isset($_POST['place_name'])  )
-	{
-	 $place_name =  $_POST['place_name'];
-	
-
-    $police_station_name =  $_POST['police_station_name'];
-
-    $address =  $_POST['address'];
-    $contact_no =  $_POST['contact_no'];
-	
-      // file_put_contents("a.txt", "hello");
-
-
-   $query  = "Insert into police_station_jayed (place_name,police_station_name,address,contact_no) VALUES ('$place_name','$police_station_name','$address','$contact_no')";
-		
-		// $query = "Insert int"
-		if($result = mysqli_query($conn,$query)){
-			exit(mysqli_error());
-		}else{
-			echo "1 record added";
-		}
-
-
+if(isset($_POST['addRecord'])  )
+{
+	$package_name =  $_POST['package_name'];
+	$package_price =  $_POST['package_price'];
+	$package_description =  $_POST['package_description'];
+	$name = $_FILES['package_image']['name'];
+	$dst="../image/".$name;
+	move_uploaded_file($_FILES["package_image"]["tmp_name"],"../image/".$name);
+	// file_put_contents("a.txt", $package_name." ".$package_price." ".$package_description." ".$dst." ".$hotel_name);
+	$sql = "INSERT INTO `hotel_package`(`hotel_name`, `package_name`, `package_price`, `package_description`, `package_image`) VALUES ('$hotel_name','$package_name','$package_price','$package_description')";
+	$res=mysqli_query($conn,$sql);
+	if ($res) {
+		echo var_dump($res);
+	}else{
+		echo var_dump($res);
 	}
+}
 	// pass id on modal
 if(isset($_POST['id']) && isset($_POST['id']) != "")
 {
     $user_id = $_POST['id'];
-    $query = "SELECT * FROM police_station_jayed WHERE id = '$user_id'";
+    $query = "SELECT * FROM hotel WHERE id = '$user_id'";
     if (!$result = mysqli_query($conn,$query)) {
         exit(mysqli_error());
     }
@@ -123,7 +109,7 @@ if(isset($_POST['deleteid']))
 
 	$user_id = $_POST['deleteid']; 
 
-	$deletequery = " delete from police_station_jayed where id ='$user_id' ";
+	$deletequery = " delete from hotel_package where id ='$user_id' ";
 	if (!$result = mysqli_query($conn,$deletequery)) {
         exit(mysqli_error());
 

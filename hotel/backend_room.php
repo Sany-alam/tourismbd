@@ -1,26 +1,26 @@
 <?php
-ini_set('error_log', 'ussd-app-error.log');
+// @ob_start();
+// ini_set('error_log', 'ussd-app-error.log');
 include("../connection.php");
-extract($_POST);
+// if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+$hotel_name = $_SESSION['hotel_name'];
+$place_name = $_SESSION['place_name'];
+// extract($_POST);
 
 if(isset($_POST['readrecords'])){
 
 	$data =  '<table class="table table-bordered table-striped ">
 						<tr class="bg-dark text-white">
 							<th>No.</th>
-							<th>Place Name</th>
-							<th>Restaurant Name</th>
-							
+							<th>Flat Name</th>
+							<th>Total Room</th>
 						    <th>Image</th>
-						    <th>Snacks</th>
-						    <th>Lunch</th>
-						    <th>Dinner</th>
-							<th>Address</th> 
-							<th>Contact</th>
+							<th>Price</th> 
+							<th>Air Condition</th>
 							<th>Delete Action</th>
 						</tr>'; 
 
-	$displayquery = " SELECT * FROM res_jayed"; 
+	$displayquery = " SELECT * FROM hotel_room where hotel_name = '$hotel_name'"; 
 	$result = mysqli_query($conn,$displayquery);
 
 	if(mysqli_num_rows($result) > 0){
@@ -28,23 +28,15 @@ if(isset($_POST['readrecords'])){
 		$number = 1;
 		while ($row = mysqli_fetch_array($result)) {
 
-			$image = "../".$row['res_image'];
+			$image = "../".$row['hotel_image'];
 			
 			$data .= '<tr>  
 				<td>'.$number.'</td>
-				<td>'.$row['place_name'].'</td>
-				<td>'.$row['res_name'].'</td>
-				
-
+				<td>'.$row['flat_name'].'</td>
+				<td>'.$row['flat_total_room'].'</td>
 				<td><img src ='.$image.'></td>
-
-				<td>'.$row['Snacks'].'</td>
-				<td>'.$row['Lunch'].'</td>
-				<td>'.$row['Dinner'].'</td>
-				
-				<td> '.$row['res_address'].' </td>
-				<td> '.$row['res_contact'].' </td>
-				
+				<td>'.$row['flat_price'].'</td>
+				<td> '.$row['flat_ac'].' </td>
 				<td>
 					<button onclick="DeleteUser('.$row['id'].')" class="btn btn-danger">Delete</button>
 				</td>
@@ -61,44 +53,30 @@ if(isset($_POST['readrecords'])){
 //adding records in database
 // if(isset($_POST['district']) &&  isset($_POST['view']) && isset($_POST['travel_path']) && isset($_POST['place_name']) && isset($_POST['place_description']) )
 
-if(isset($_POST['place_name'])  )
-	{
-	 $place_name =  $_POST['place_name'];
-	 $snacks = $_POST['snacks'];
-	 $lunch = $_POST['lunch'];
-	 $dinner = $_POST['dinner'];
-
-    $Restaurant_name =  $_POST['res_name'];
-    $price =  $_POST['price'];
-    $Restaurant_address =  $_POST['res_address'];
-    $Restaurant_contact =  $_POST['res_contact'];
-		 $name    = $_FILES['file']['name'];
-
-		//$fnm= $_FILES["image"]["name"];
-
-		// $file = $_FILES["pimage"]["tmp_name"];
-	$dst="image/".$name;
-	// $dst1="image/".$fnm;
-	 move_uploaded_file($_FILES["image"]["tmp_name"],$dst);
-      // file_put_contents("a.txt", "hello");
-
-
-   $query  = "Insert into res_jayed (place_name,res_name,Snacks,Lunch,Dinner,res_address,res_contact,res_image) VALUES ('$place_name','$Restaurant_name','$snacks','$lunch','$dinner','$Restaurant_address','$Restaurant_contact','$dst')";
-		
-		// $query = "Insert int"
-		if($result = mysqli_query($conn,$query)){
-			exit(mysqli_error());
-		}else{
-			echo "1 record added";
-		}
-
-
+if(isset($_POST['addRecord'])  )
+{
+	$flat_name =  $_POST['flat_name'];
+	$price =  $_POST['price'];
+	$total_room =  $_POST['total_room'];
+	$ac =  $_POST['ac'];
+	$name = $_FILES['picture']['name'];
+	$dst="../image/".$name;
+	move_uploaded_file($_FILES["picture"]["tmp_name"],"../image/".$name);
+	// file_put_contents("a.txt", $flat_name." ".$price." ".$dst." ".$total_room." ".$ac." ".$hotel_name);
+	// $query = "INSERT INTO `hotel_room`(`flat_name`, `flat_price`, `flat_image`, `flat_total_room`, `flat_ac`, `hotel_name`) VALUES ('$flat_name','$price',$dst,$total_room,$ac,'$hotel_name')";
+	$sql = "INSERT INTO `hotel_room`(`flat_name`, `flat_price`, `flat_image`, `flat_total_room`, `flat_ac`, `hotel_name`) VALUES ('$flat_name','$price',$dst,$total_room,$ac,'$hotel_name')";
+	$res=mysqli_query($conn,$sql);
+	if ($res) {
+		echo var_dump($res);
+	}else{
+		echo var_dump($res);
 	}
+}
 	// pass id on modal
 if(isset($_POST['id']) && isset($_POST['id']) != "")
 {
     $user_id = $_POST['id'];
-    $query = "SELECT * FROM res_jayed WHERE id = '$user_id'";
+    $query = "SELECT * FROM hotel WHERE id = '$user_id'";
     if (!$result = mysqli_query($conn,$query)) {
         exit(mysqli_error());
     }
@@ -138,7 +116,7 @@ if(isset($_POST['deleteid']))
 
 	$user_id = $_POST['deleteid']; 
 
-	$deletequery = " delete from res_jayed where id ='$user_id' ";
+	$deletequery = " delete from hotel_room where id ='$user_id' ";
 	if (!$result = mysqli_query($conn,$deletequery)) {
         exit(mysqli_error());
 

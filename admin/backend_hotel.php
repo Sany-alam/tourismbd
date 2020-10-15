@@ -64,6 +64,7 @@ if(isset($_POST['place_name'])  )
     $price =  $_POST['price'];
     $hotel_address =  $_POST['hotel_address'];
     $hotel_contact =  $_POST['hotel_contact'];
+    $hotel_email =  $_POST['hotel_email'];
 		 $name    = $_FILES['file']['name'];
 
 		//$fnm= $_FILES["image"]["name"];
@@ -79,6 +80,8 @@ if(isset($_POST['place_name'])  )
 		
 		// $query = "Insert int"
 		if($result = mysqli_query($conn,$query)){
+			$sql = "INSERT INTO `admin_hotel`(`email`, `password`, `hotel_name`) VALUES ('$hotel_email','1234','$hotel_name')";
+			$res = mysqli_query($conn,$sql);
 			exit(mysqli_error());
 		}else{
 			echo "1 record added";

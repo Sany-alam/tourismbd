@@ -132,6 +132,12 @@ for($i=0;$i<count($place);$i++){
         </div>
 
 
+        <div class="form-group">
+          <label> Hotel Email </label>
+          <input type="email" name="hotel_email" id="hotel_email"  placeholder="hotel_email" class="form-control">
+        </div>
+
+
 
 
         <!-- <div class="form-group">
@@ -181,6 +187,7 @@ $(document).ready(function () {
     var price =  $("#price").val();
     var hotel_address =  $("#hotel_address").val();
     var hotel_contact =  $("#hotel_contact").val();
+    var hotel_email =  $("#hotel_email").val();
     //var pimage = $("#file").prop("files")[0];
     
 
@@ -192,6 +199,7 @@ var formData= new FormData();
    formData.append("price", price);
     formData.append("hotel_address", hotel_address);
      formData.append("hotel_contact", hotel_contact);
+     formData.append("hotel_email", hotel_email);
      formData.append('file',$('#file')[0].files[0]);
 
 
