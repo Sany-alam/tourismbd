@@ -125,8 +125,7 @@ function addRecord(){
     type:'POST',
     data: formData,
     success:function(data, status){
-        // alert("Data added successfully");
-        alert(data);
+        alert("Data added successfully");
         readRecords();
     },
   });

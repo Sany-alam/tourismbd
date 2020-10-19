@@ -58,37 +58,25 @@ if(isset($_POST['readrecords'])){
 // if(isset($_POST['district']) &&  isset($_POST['view']) && isset($_POST['travel_path']) && isset($_POST['place_name']) && isset($_POST['place_description']) )
 
 if(isset($_POST['place_name'])  )
-	{
-	 $place_name =  $_POST['place_name'];
-    $hotel_name =  $_POST['hotel_name'];
-    $price =  $_POST['price'];
-    $hotel_address =  $_POST['hotel_address'];
-    $hotel_contact =  $_POST['hotel_contact'];
-    $hotel_email =  $_POST['hotel_email'];
-		 $name    = $_FILES['file']['name'];
-
-		//$fnm= $_FILES["image"]["name"];
-
-		// $file = $_FILES["pimage"]["tmp_name"];
+{
+	$place_name =  $_POST['place_name'];
+	$hotel_name =  $_POST['hotel_name'];
+	$price =  $_POST['price'];
+	$hotel_address =  $_POST['hotel_address'];
+	$hotel_contact =  $_POST['hotel_contact'];
+	$hotel_email =  $_POST['hotel_email'];
+	$name    = $_FILES['file']['name'];
 	$dst="image/".$name;
-	// $dst1="image/".$fnm;
-	 move_uploaded_file($_FILES["image"]["tmp_name"],$dst);
-      // file_put_contents("a.txt", "hello");
-
-
-   $query  = "Insert into hotel (place_name,hotel_name,price,hotel_address,hotel_contact,hotel_image) VALUES ('$place_name','$hotel_name','$price','$hotel_address','$hotel_contact','$dst')";
+	move_uploaded_file($_FILES["file"]["tmp_name"],'../'.$dst);
+	//    $query  = "Insert into hotel (place_name,hotel_name,price,hotel_address,hotel_contact,hotel_image) VALUES ('$place_name','$hotel_name','$price','$hotel_address','$hotel_contact','$dst')";
+	$query  = "INSERT INTO `hotel`(`email`, `password`, `place_name`, `hotel_name`, `hotel_image`,`price`, `hotel_address`, `hotel_contact`) VALUES ('$hotel_email','1234','$place_name','$hotel_name','$dst','$price','$hotel_address','$hotel_contact')";
 		
-		// $query = "Insert int"
-		if($result = mysqli_query($conn,$query)){
-			$sql = "INSERT INTO `admin_hotel`(`email`, `password`, `hotel_name`) VALUES ('$hotel_email','1234','$hotel_name')";
-			$res = mysqli_query($conn,$sql);
-			exit(mysqli_error());
-		}else{
-			echo "1 record added";
-		}
-
-
+	if($result = mysqli_query($conn,$query)){
+		exit(mysqli_error());
+	}else{
+		echo "1 record added";
 	}
+}
 	// pass id on modal
 if(isset($_POST['id']) && isset($_POST['id']) != "")
 {

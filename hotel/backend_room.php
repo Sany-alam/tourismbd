@@ -3,7 +3,7 @@
 // ini_set('error_log', 'ussd-app-error.log');
 include("../connection.php");
 // if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-$hotel_name = $_SESSION['hotel_name'];
+$hotel = $_SESSION['hotel']['id'];
 $place_name = $_SESSION['place_name'];
 // extract($_POST);
 
@@ -20,7 +20,7 @@ if(isset($_POST['readrecords'])){
 							<th>Delete Action</th>
 						</tr>'; 
 
-	$displayquery = " SELECT * FROM hotel_room where hotel_name = '$hotel_name'"; 
+	$displayquery = " SELECT * FROM hotel_room where hotel_id = '$hotel'"; 
 	$result = mysqli_query($conn,$displayquery);
 
 	if(mysqli_num_rows($result) > 0){
@@ -28,7 +28,14 @@ if(isset($_POST['readrecords'])){
 		$number = 1;
 		while ($row = mysqli_fetch_array($result)) {
 
-			$image = "../".$row['hotel_image'];
+			$image = $row['flat_image'];
+
+			if ($row['flat_ac']) {
+				$ac = "YES";
+			}
+			else{
+				$ac = "NO";
+			}
 			
 			$data .= '<tr>  
 				<td>'.$number.'</td>
@@ -36,7 +43,7 @@ if(isset($_POST['readrecords'])){
 				<td>'.$row['flat_total_room'].'</td>
 				<td><img src ='.$image.'></td>
 				<td>'.$row['flat_price'].'</td>
-				<td> '.$row['flat_ac'].' </td>
+				<td> '.$ac.' </td>
 				<td>
 					<button onclick="DeleteUser('.$row['id'].')" class="btn btn-danger">Delete</button>
 				</td>
@@ -64,7 +71,7 @@ if(isset($_POST['addRecord'])  )
 	move_uploaded_file($_FILES["picture"]["tmp_name"],"../image/".$name);
 	// file_put_contents("a.txt", $flat_name." ".$price." ".$dst." ".$total_room." ".$ac." ".$hotel_name);
 	// $query = "INSERT INTO `hotel_room`(`flat_name`, `flat_price`, `flat_image`, `flat_total_room`, `flat_ac`, `hotel_name`) VALUES ('$flat_name','$price',$dst,$total_room,$ac,'$hotel_name')";
-	$sql = "INSERT INTO `hotel_room`(`flat_name`, `flat_price`, `flat_image`, `flat_total_room`, `flat_ac`, `hotel_name`) VALUES ('$flat_name','$price',$dst,$total_room,$ac,'$hotel_name')";
+	$sql = "INSERT INTO `hotel_room`(`flat_name`, `flat_price`, `flat_image`, `flat_total_room`, `flat_ac`, `hotel_id`) VALUES ('$flat_name','$price','$dst','$total_room','$ac','$hotel')";
 	$res=mysqli_query($conn,$sql);
 	if ($res) {
 		echo var_dump($res);

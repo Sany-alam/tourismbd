@@ -20262,7 +20262,7 @@ button.bg-purple-1:focus {
   }
   .mr-xl-n6,
   .mx-xl-n6 {
-    margin-right: -2.5rem !important;
+    /* margin-right: -2.5rem !important; */
   }
   .mb-xl-n6,
   .my-xl-n6 {
@@ -20270,7 +20270,7 @@ button.bg-purple-1:focus {
   }
   .ml-xl-n6,
   .mx-xl-n6 {
-    margin-left: -2.5rem !important;
+    /* margin-left: -2.5rem !important; */
   }
   .m-xl-n7 {
     margin: -3rem !important;

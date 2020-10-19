@@ -3,7 +3,7 @@
 // ini_set('error_log', 'ussd-app-error.log');
 include("../connection.php");
 // if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-$hotel_name = $_SESSION['hotel_name'];
+$hotel = $_SESSION['hotel']['id'];
 $place_name = $_SESSION['place_name'];
 // extract($_POST);
 
@@ -19,7 +19,7 @@ if(isset($_POST['readrecords'])){
 							<th>Delete Action</th>
 						</tr>'; 
 
-	$displayquery = " SELECT * FROM hotel_package where hotel_name = '$hotel_name'"; 
+	$displayquery = " SELECT * FROM hotel_package where hotel_id = '$hotel'"; 
 	$result = mysqli_query($conn,$displayquery);
 
 	if(mysqli_num_rows($result) > 0){
@@ -27,7 +27,7 @@ if(isset($_POST['readrecords'])){
 		$number = 1;
 		while ($row = mysqli_fetch_array($result)) {
 
-			$image = "../".$row['package_image'];
+			$image = $row['package_image'];
 			
 			$data .= '<tr>  
 				<td>'.$number.'</td>
@@ -55,9 +55,9 @@ if(isset($_POST['addRecord'])  )
 	$package_description =  $_POST['package_description'];
 	$name = $_FILES['package_image']['name'];
 	$dst="../image/".$name;
-	move_uploaded_file($_FILES["package_image"]["tmp_name"],"../image/".$name);
+	move_uploaded_file($_FILES["package_image"]["tmp_name"],$dst);
 	// file_put_contents("a.txt", $package_name." ".$package_price." ".$package_description." ".$dst." ".$hotel_name);
-	$sql = "INSERT INTO `hotel_package`(`hotel_name`, `package_name`, `package_price`, `package_description`, `package_image`) VALUES ('$hotel_name','$package_name','$package_price','$package_description')";
+	$sql = "INSERT INTO `hotel_package`(`hotel_id`, `package_name`, `package_price`, `package_description`, `package_image`) VALUES ('$hotel','$package_name','$package_price','$package_description','$dst')";
 	$res=mysqli_query($conn,$sql);
 	if ($res) {
 		echo var_dump($res);

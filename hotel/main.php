@@ -2,9 +2,9 @@
 @ob_start();
 include("../connection.php");
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
- $hotel_name = $_SESSION['hotel_name'];
+ $hotel = $_SESSION['hotel']['id'];
  
-$sql = "SELECT * from hotel where hotel_name = '$hotel_name'";
+$sql = "SELECT * from hotel where id = '$hotel'";
 $res = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($res);
 $place_name = $row['place_name'];

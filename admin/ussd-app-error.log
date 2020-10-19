@@ -20,3 +20,10 @@
 [15-Oct-2020 19:41:59 Europe/Berlin] PHP Notice:  Undefined index: image in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 75
 [15-Oct-2020 19:42:00 Europe/Berlin] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 75
 [15-Oct-2020 19:42:00 Europe/Berlin] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 85
+[19-Oct-2020 09:36:51 Europe/Berlin] PHP Notice:  Undefined index: image in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 70
+[19-Oct-2020 09:36:51 Europe/Berlin] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 70
+[19-Oct-2020 09:36:51 Europe/Berlin] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 75
+[19-Oct-2020 09:48:58 Europe/Berlin] PHP Notice:  Undefined index: image in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 70
+[19-Oct-2020 09:48:58 Europe/Berlin] PHP Notice:  Trying to access array offset on value of type null in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 70
+[19-Oct-2020 09:48:58 Europe/Berlin] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 75
+[19-Oct-2020 09:50:35 Europe/Berlin] PHP Warning:  mysqli_error() expects exactly 1 parameter, 0 given in E:\xampp\htdocs\tourismbd\admin\backend_hotel.php on line 75

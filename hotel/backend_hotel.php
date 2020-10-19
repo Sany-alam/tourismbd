@@ -3,7 +3,7 @@
 ini_set('error_log', 'ussd-app-error.log');
 include("../connection.php");
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
-$hotel_name = $_SESSION['hotel_name'];
+$hotel = $_SESSION['hotel']['id'];
 $place_name = $_SESSION['place_name'];
 extract($_POST);
 
@@ -22,7 +22,7 @@ if(isset($_POST['readrecords'])){
 							<th>Delete Action</th>
 						</tr>'; 
 
-	$displayquery = " SELECT * FROM hotel where hotel_name = '$hotel_name'"; 
+	$displayquery = "SELECT * FROM hotel where id = '$hotel'"; 
 	$result = mysqli_query($conn,$displayquery);
 
 	if(mysqli_num_rows($result) > 0){

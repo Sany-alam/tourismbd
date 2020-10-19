@@ -206,12 +206,12 @@ var formData= new FormData();
 
     $.ajax({
       processData: false,
-        contentType: false,
+      contentType: false,
       url:"backend_hotel.php",
       type:'POST',
       data: formData,
       success:function(data, status){
-                alert("Data added successfully");
+        alert("Data added successfully");
         readRecords();
       },
 
