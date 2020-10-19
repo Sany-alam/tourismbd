@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 05:23 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.3.19
+-- Host: localhost:3306
+-- Generation Time: Oct 19, 2020 at 12:51 PM
+-- Server version: 8.0.22
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tourismbd`
+-- Database: `mazharsa_tourismbd`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -47,7 +48,7 @@ INSERT INTO `admin` (`id`, `email`, `password`) VALUES
 --
 
 CREATE TABLE `admin_hotel` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
   `hotel_name` text NOT NULL
@@ -59,7 +60,8 @@ CREATE TABLE `admin_hotel` (
 
 INSERT INTO `admin_hotel` (`id`, `email`, `password`, `hotel_name`) VALUES
 (1, 'royal_tulip@gmail.com', '1234', 'Royal Tulip Sea Pearl Beach Resort'),
-(2, 'Longbeach@gmail.com', '1234', 'Long beach hotel');
+(2, 'Longbeach@gmail.com', '1234', 'Long beach hotel'),
+(5, 'asd@asd.com', '1234', 'asd');
 
 -- --------------------------------------------------------
 
@@ -68,7 +70,7 @@ INSERT INTO `admin_hotel` (`id`, `email`, `password`, `hotel_name`) VALUES
 --
 
 CREATE TABLE `gallery` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `place_name` text NOT NULL,
   `image_name` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -88,7 +90,7 @@ INSERT INTO `gallery` (`id`, `place_name`, `image_name`) VALUES
 --
 
 CREATE TABLE `hospital` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `place_name` text NOT NULL,
   `hospital_name` text NOT NULL,
   `address` text NOT NULL,
@@ -172,13 +174,13 @@ INSERT INTO `hospital` (`id`, `place_name`, `hospital_name`, `address`, `contact
 --
 
 CREATE TABLE `hotel` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `place_name` text NOT NULL,
   `hotel_name` text NOT NULL,
   `hotel_image` text NOT NULL,
   `hotel_lat` text NOT NULL,
   `hotel_lon` text NOT NULL,
-  `price` int(11) NOT NULL,
+  `price` int NOT NULL,
   `hotel_address` text NOT NULL,
   `hotel_contact` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -450,7 +452,8 @@ INSERT INTO `hotel` (`id`, `place_name`, `hotel_name`, `hotel_image`, `hotel_lat
 (260, 'uttara gonovobon', 'Grand Palace', 'image/GrandPalace.jpg', '', '', 14227, 'House 5, Road, 4 G L Roy Rd, Rangpur 5400', '01713-558844'),
 (261, 'uttara gonovobon', 'Hotel GM Suites', 'image/HotelGMSuites.jpg', '', '', 1500, 'G L Roy Rd, Rangpur', '01785-666111'),
 (262, 'Kutubdia', 'Hotel Samudra Bilash', 'image/Hotel_Samudra_Bilash.jpg', '21.816314', '91.849175', 500, 'Kutubdia', '01789-357888'),
-(263, 'Boddho', 'Warisan Residential Hotel', 'image/warisanresidentialhotel.jpg', '', '', 3000, 'Rajshahi', '01978459623');
+(263, 'Boddho', 'Warisan Residential Hotel', 'image/warisanresidentialhotel.jpg', '', '', 3000, 'Rajshahi', '01978459623'),
+(271, 'Coxsbazar', 'asd', 'image/ombre-wedding-cake.jpg', '', '', 123, 'asd', '234234');
 
 -- --------------------------------------------------------
 
@@ -459,7 +462,7 @@ INSERT INTO `hotel` (`id`, `place_name`, `hotel_name`, `hotel_image`, `hotel_lat
 --
 
 CREATE TABLE `hotel_gallery` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `hotel_name` text NOT NULL,
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -488,15 +491,37 @@ INSERT INTO `hotel_gallery` (`id`, `hotel_name`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hotel_package`
+--
+
+CREATE TABLE `hotel_package` (
+  `id` int NOT NULL,
+  `hotel_name` text NOT NULL,
+  `package_name` text NOT NULL,
+  `package_price` text NOT NULL,
+  `package_description` text NOT NULL,
+  `package_image` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hotel_package`
+--
+
+INSERT INTO `hotel_package` (`id`, `hotel_name`, `package_name`, `package_price`, `package_description`, `package_image`) VALUES
+(2, 'Royal Tulip Sea Pearl Beach Resort', 'hi5', '3234', 'asdfghmnbgfdserti', '../image/photo-1508138221679-760a23a2285b.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `hotel_review`
 --
 
 CREATE TABLE `hotel_review` (
-  `review_id` int(11) NOT NULL,
-  `hotel_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `review_id` int NOT NULL,
+  `hotel_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `review` text NOT NULL,
-  `rating` int(11) NOT NULL,
+  `rating` int NOT NULL,
   `image` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -523,11 +548,34 @@ INSERT INTO `hotel_review` (`review_id`, `hotel_id`, `user_id`, `review`, `ratin
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hotel_room`
+--
+
+CREATE TABLE `hotel_room` (
+  `id` int NOT NULL,
+  `flat_name` text NOT NULL,
+  `flat_price` text NOT NULL,
+  `flat_image` text NOT NULL,
+  `flat_total_room` text NOT NULL,
+  `flat_ac` text NOT NULL,
+  `hotel_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hotel_room`
+--
+
+INSERT INTO `hotel_room` (`id`, `flat_name`, `flat_price`, `flat_image`, `flat_total_room`, `flat_ac`, `hotel_name`) VALUES
+(2, '8C', '1600', '../image/download.jpg', '5', '1', 'Royal Tulip Sea Pearl Beach Resort');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `place`
 --
 
 CREATE TABLE `place` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `district` mediumtext NOT NULL,
   `place_category` text NOT NULL,
   `place_name` mediumtext NOT NULL,
@@ -632,7 +680,7 @@ INSERT INTO `place` (`id`, `district`, `place_category`, `place_name`, `place_im
 --
 
 CREATE TABLE `place_gallery` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `place_name` text NOT NULL,
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -689,45 +737,13 @@ INSERT INTO `place_gallery` (`id`, `place_name`, `image`) VALUES
 --
 
 CREATE TABLE `place_review` (
-  `review_id` int(11) NOT NULL,
-  `place_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `review_id` int NOT NULL,
+  `place_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `review` text NOT NULL,
-  `rating` int(11) NOT NULL,
+  `rating` int NOT NULL,
   `image` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `place_review`
---
-
-INSERT INTO `place_review` (`review_id`, `place_id`, `user_id`, `review`, `rating`, `image`) VALUES
-(1, 1, 4, 'Relaxing place.', 5, 'image/Sajek-Valley.jpg'),
-(2, 2, 4, 'Good place.', 4, 'image/Sajek-Valley.jpg'),
-(3, 3, 4, 'Nice place.', 5, 'image/nilgiri.jpg'),
-(4, 41, 6, 'Nice Place.', 4, 'image/curzon_hall.jpg'),
-(6, 6, 5, 'Good', 5, 'image/IMG_20180919_171509.jpg'),
-(7, 6, 5, 'Good', 5, 'image/Zedze_wallpaper-a8743118-60ce-4ba1-a813-51d5d0e6ea3a.jpg'),
-(8, 4, 6, 'nice place', 5, 'image/'),
-(9, 11, 4, 'Too amazing place...', 5, 'image/v7tvhqblhouaq0aqzib8.jpg'),
-(10, 11, 4, 'Too amazing place.', 5, 'image/'),
-(11, 7, 5, 'Nice', 5, 'image/IMG_20180920_121030_564.jpg'),
-(12, 17, 4, 'Amazing place\r\n..', 4, 'image/IMAG8221.jpg'),
-(13, 30, 4, 'Very exciting place\r\n...', 5, 'image/2.jpg'),
-(14, 9, 4, 'Nice waterfall....', 4, 'image/images (1).jpeg'),
-(15, 8, 5, 'Not good. ', 2, 'image/images.jpeg'),
-(16, 8, 5, 'Very nice place.. ', 5, 'image/images (1).jpeg'),
-(17, 8, 6, 'very good Place\r\n  ', 4, 'image/'),
-(18, 10, 4, 'Medium Place.', 4, 'image/boat_riding_lalakhal.jpg'),
-(19, 13, 5, 'Not very good. ', 2, 'image/tea-garden-at-Sylhet.jpg'),
-(20, 13, 4, 'Not bad.', 3, 'image/Nilachol,_Bandarban,_Bangladesh_(02).jpg'),
-(21, 13, 8, 'Nice place.', 4, 'image/Hanging_bridge,_meghla,_Bandarban.jpg'),
-(22, 1, 5, 'Nice place. ', 4, 'image/IMG_20180622_165125.jpg'),
-(23, 1, 5, 'Refreshing place. ', 5, 'image/IMG_20190117_133749_557.jpg'),
-(28, 1, 10, 'Nice place', 4, ''),
-(29, 2, 4, 'Best place', 5, ''),
-(30, 1, 11, 'Awesome place', 4, ''),
-(31, 3, 12, 'Awesome place', 4, '');
 
 -- --------------------------------------------------------
 
@@ -736,7 +752,7 @@ INSERT INTO `place_review` (`review_id`, `place_id`, `user_id`, `review`, `ratin
 --
 
 CREATE TABLE `police_station` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `place_name` text NOT NULL,
   `police_station_name` text NOT NULL,
   `address` text NOT NULL,
@@ -820,16 +836,16 @@ INSERT INTO `police_station` (`id`, `place_name`, `police_station_name`, `addres
 --
 
 CREATE TABLE `res` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `place_name` mediumtext NOT NULL,
   `res_name` mediumtext NOT NULL,
   `res_des` text NOT NULL,
   `res_image` mediumtext NOT NULL,
   `res_lat` mediumtext NOT NULL,
   `res_lon` mediumtext NOT NULL,
-  `Snacks` int(11) NOT NULL,
-  `Lunch` int(11) NOT NULL,
-  `Dinner` int(11) NOT NULL,
+  `Snacks` int NOT NULL,
+  `Lunch` int NOT NULL,
+  `Dinner` int NOT NULL,
   `res_address` text NOT NULL,
   `res_contact` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1075,7 +1091,7 @@ INSERT INTO `res` (`id`, `place_name`, `res_name`, `res_des`, `res_image`, `res_
 --
 
 CREATE TABLE `res_gallery` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `res_name` text NOT NULL,
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1119,11 +1135,11 @@ INSERT INTO `res_gallery` (`id`, `res_name`, `image`) VALUES
 --
 
 CREATE TABLE `res_review` (
-  `review_id` int(11) NOT NULL,
-  `res_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `review_id` int NOT NULL,
+  `res_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `review` text NOT NULL,
-  `rating` int(11) NOT NULL,
+  `rating` int NOT NULL,
   `image` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1159,10 +1175,10 @@ INSERT INTO `res_review` (`review_id`, `res_id`, `user_id`, `review`, `rating`, 
 --
 
 CREATE TABLE `transport_cost` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `source` text NOT NULL,
   `destination` text NOT NULL,
-  `cost` int(11) NOT NULL
+  `cost` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1311,12 +1327,12 @@ INSERT INTO `transport_cost` (`id`, `source`, `destination`, `cost`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `user_name` text NOT NULL,
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
   `user_mobile` text NOT NULL,
-  `mail_confirm` tinyint(1) NOT NULL DEFAULT 1
+  `mail_confirm` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1373,10 +1389,22 @@ ALTER TABLE `hotel_gallery`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `hotel_package`
+--
+ALTER TABLE `hotel_package`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `hotel_review`
 --
 ALTER TABLE `hotel_review`
   ADD PRIMARY KEY (`review_id`);
+
+--
+-- Indexes for table `hotel_room`
+--
+ALTER TABLE `hotel_room`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `place`
@@ -1440,97 +1468,109 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `admin_hotel`
 --
 ALTER TABLE `admin_hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `hospital`
 --
 ALTER TABLE `hospital`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `hotel`
 --
 ALTER TABLE `hotel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
 
 --
 -- AUTO_INCREMENT for table `hotel_gallery`
 --
 ALTER TABLE `hotel_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `hotel_package`
+--
+ALTER TABLE `hotel_package`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `hotel_review`
 --
 ALTER TABLE `hotel_review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `review_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `hotel_room`
+--
+ALTER TABLE `hotel_room`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `place`
 --
 ALTER TABLE `place`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `place_gallery`
 --
 ALTER TABLE `place_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `place_review`
 --
 ALTER TABLE `place_review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `review_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `police_station`
 --
 ALTER TABLE `police_station`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `res`
 --
 ALTER TABLE `res`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `res_gallery`
 --
 ALTER TABLE `res_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `res_review`
 --
 ALTER TABLE `res_review`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `review_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `transport_cost`
 --
 ALTER TABLE `transport_cost`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

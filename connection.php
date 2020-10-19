@@ -1,10 +1,9 @@
 <?php
-$servername ="localhost";
-$username ="root";
-$password ="";
-$conn = mysqli_connect($servername, $username, $password,"tourismbd");
-mysqli_query($conn,'SET CHARACTER SET utf8');
-mysqli_query($conn,"SET SESSION collation_connection ='utf8_general_ci'");
+$servername = 'localhost';
+$username = 'mazharsa_mazharsa';
+$password = 'asdfghjkl1233211';
+// $conn = mysqli_connect($servername, $username, $password,"tourismbd");
+$conn = mysqli_connect($servername,$username,$password,'mazharsa_tourismbd');
 session_start();
 
 ?>
